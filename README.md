@@ -1,7 +1,9 @@
 SolidusCustomerImages
 =====================
 
-Introduction goes here.
+[![Build Status](https://travis-ci.org/nebulab/solidus_customer_images.svg?branch=master)](https://travis-ci.org/nebulab/solidus_customer_images)
+
+Solidus extension that allows customers to upload their images, with admin moderation
 
 Installation
 ------------
@@ -26,7 +28,8 @@ First bundle your dependencies, then run `rake`. `rake` will default to building
 
 ```shell
 bundle
-bundle exec rake
+bundle exec rake test_app # generates the dummy app
+bundle exec rake # runs rubocop and rspec
 ```
 
 When testing your applications integration with this extension you may use it's factories.
@@ -36,4 +39,4 @@ Simply add this require statement to your spec_helper:
 require 'solidus_customer_images/factories'
 ```
 
-Copyright (c) 2018 [name of extension creator], released under the New BSD License
+Copyright (c) 2018 Nebulab, released under the New BSD License

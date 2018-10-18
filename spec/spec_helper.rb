@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Run Coverage report
 require 'simplecov'
 SimpleCov.start do
@@ -13,11 +15,13 @@ end
 # Configure Rails Environment
 ENV['RAILS_ENV'] = 'test'
 
-require File.expand_path('../dummy/config/environment.rb', __FILE__)
+require File.expand_path('dummy/config/environment.rb', __dir__)
 
 require 'rspec/rails'
 require 'database_cleaner'
 require 'ffaker'
+
+require 'rspec/collection_matchers'
 
 # Requires supporting ruby files with custom matchers and macros, etc,
 # in spec/support/ and its subdirectories.
@@ -34,7 +38,7 @@ require 'spree/testing_support/url_helpers'
 require 'solidus_customer_images/factories'
 
 RSpec.configure do |config|
-  config.include FactoryGirl::Syntax::Methods
+  config.include FactoryBot::Syntax::Methods
 
   # Infer an example group's spec type from the file location.
   config.infer_spec_type_from_file_location!
@@ -72,13 +76,13 @@ RSpec.configure do |config|
   end
 
   # Before each spec check if it is a Javascript test and switch between using database transactions or not where necessary.
-  config.before :each do
+  config.before do
     DatabaseCleaner.strategy = RSpec.current_example.metadata[:js] ? :truncation : :transaction
     DatabaseCleaner.start
   end
 
   # After each spec clean the database.
-  config.after :each do
+  config.after do
     DatabaseCleaner.clean
   end
 
