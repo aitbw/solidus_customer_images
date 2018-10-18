@@ -1,92 +1,153 @@
 # Relaxed.Ruby.Style
 
+require: rubocop-rspec
+
+# Custom rules
 AllCops:
+  Include:
+    - config.ru
+    - '**/*.rb'
   Exclude:
-    - 'spec/dummy/**/*'
-    - 'vendor/bundle/**/*'
-  TargetRubyVersion: 2.1
+    - Gemfile
+    - Rakefile
+    - lib/generators/**/*
+    - db/schema.rb
+    - db/migrate/*
+    - tmp/**/*
+    - vendor/**/*
+    - bin/**/*
+    - log/**/*
+    - spec/dummy/**/*
 
-# Sometimes I believe this reads better
-# This also causes spacing issues on multi-line fixes
-Style/BracesAroundHashParameters:
+Rails:
+  Enabled: true
+
+Metrics/AbcSize:
   Enabled: false
 
-# We use class vars and will have to continue doing so for compatability
-Style/ClassVars:
+Metrics/BlockNesting:
   Enabled: false
 
-# We need these names for backwards compatability
-Style/PredicateName:
+Metrics/ClassLength:
   Enabled: false
 
-Style/AccessorMethodName:
+Metrics/ModuleLength:
   Enabled: false
 
-# This has been used for customization
-Style/MutableConstant:
+Metrics/CyclomaticComplexity:
   Enabled: false
 
-Style/ClassAndModuleChildren:
+Metrics/LineLength:
+  Enabled: false
+
+Metrics/MethodLength:
+  Enabled: false
+
+Metrics/ParameterLists:
+  Enabled: false
+
+Metrics/PerceivedComplexity:
+  Enabled: false
+
+Naming/FileName:
+  Exclude:
+    - Gemfile
+    - Guardfile
+
+Metrics/BlockLength:
+  Enabled: false
+
+Rails/HasManyOrHasOneDependent:
   Enabled: false
 
 Style/GuardClause:
   Enabled: false
 
-Style/WordArray:
+Rails/InverseOf:
   Enabled: false
 
-Style/ConditionalAssignment:
+Rails/SkipsModelValidations:
   Enabled: false
 
-Performance/Count:
+Naming/MemoizedInstanceVariableName:
   Enabled: false
 
-Style/RaiseArgs:
+Rails/OutputSafety:
   Enabled: false
 
-Style/OpMethod:
+Layout/IndentArray:
+  EnforcedStyle: consistent
+
+Naming/VariableNumber:
   Enabled: false
 
-# We can use good judgement here
-Style/RegexpLiteral:
+RSpec/ExampleLength:
   Enabled: false
 
-# Unicode comments are useful
-Style/AsciiComments:
+RSpec/DescribeClass:
+  Exclude:
+    - spec/views/**/*
+    - spec/features/**/*
+
+RSpec/ContextWording:
   Enabled: false
 
-Lint/EndAlignment:
+RSpec/NestedGroups:
   Enabled: false
 
-Style/ElseAlignment:
+RSpec/NamedSubject:
   Enabled: false
 
-Style/IndentationWidth:
+RSpec/MessageSpies:
+  EnforcedStyle: have_received
+
+RSpec/VerifiedDoubles:
   Enabled: false
 
-Style/AlignParameters:
+RSpec/MultipleExpectations:
   Enabled: false
 
-Style/ClosingParenthesisIndentation:
+RSpec/LetSetup:
   Enabled: false
 
-Style/MultilineMethodCallIndentation:
+Layout/AlignParameters:
+  EnforcedStyle: with_fixed_indentation
+
+Layout/MultilineMethodCallBraceLayout:
   Enabled: false
 
-Style/IndentArray:
+Style/FrozenStringLiteralComment:
+  Exclude:
+    - app/overrides/**/*
+
+Style/SymbolProc:
   Enabled: false
 
-Style/IndentHash:
+Rails/ActiveRecordAliases:
   Enabled: false
 
-Style/AlignHash:
+RSpec/ExpectActual:
   Enabled: false
 
-# From http://relaxed.ruby.style/
+Layout/FirstParameterIndentation:
+  EnforcedStyle: consistent
+
+Layout/MultilineMethodCallIndentation:
+  EnforcedStyle: indented
+
+Layout/ClosingParenthesisIndentation:
+  Enabled: false
+
+# Relaxed.Ruby.Style
+## Version 2.1
 
 Style/Alias:
   Enabled: false
   StyleGuide: http://relaxed.ruby.style/#stylealias
+
+Style/AsciiComments:
+  Enabled: false
+  StyleGuide: http://relaxed.ruby.style/#styleasciicomments
 
 Style/BeginBlock:
   Enabled: false
@@ -96,13 +157,17 @@ Style/BlockDelimiters:
   Enabled: false
   StyleGuide: http://relaxed.ruby.style/#styleblockdelimiters
 
+Style/CommentAnnotation:
+  Enabled: false
+  StyleGuide: http://relaxed.ruby.style/#stylecommentannotation
+
 Style/Documentation:
   Enabled: false
   StyleGuide: http://relaxed.ruby.style/#styledocumentation
 
-Style/DotPosition:
+Layout/DotPosition:
   Enabled: false
-  StyleGuide: http://relaxed.ruby.style/#styledotposition
+  StyleGuide: http://relaxed.ruby.style/#layoutdotposition
 
 Style/DoubleNegation:
   Enabled: false
@@ -168,13 +233,13 @@ Style/SingleLineMethods:
   Enabled: false
   StyleGuide: http://relaxed.ruby.style/#stylesinglelinemethods
 
-Style/SpaceBeforeBlockBraces:
+Layout/SpaceBeforeBlockBraces:
   Enabled: false
-  StyleGuide: http://relaxed.ruby.style/#stylespacebeforeblockbraces
+  StyleGuide: http://relaxed.ruby.style/#layoutspacebeforeblockbraces
 
-Style/SpaceInsideParens:
+Layout/SpaceInsideParens:
   Enabled: false
-  StyleGuide: http://relaxed.ruby.style/#stylespaceinsideparens
+  StyleGuide: http://relaxed.ruby.style/#layoutspaceinsideparens
 
 Style/SpecialGlobalVars:
   Enabled: false
@@ -184,12 +249,25 @@ Style/StringLiterals:
   Enabled: false
   StyleGuide: http://relaxed.ruby.style/#stylestringliterals
 
-Style/SymbolProc:
+Style/TrailingCommaInArguments:
   Enabled: false
+  StyleGuide: http://relaxed.ruby.style/#styletrailingcommainarguments
+
+Style/TrailingCommaInArrayLiteral:
+  Enabled: false
+  StyleGuide: http://relaxed.ruby.style/#styletrailingcommainliteral
+
+Style/TrailingCommaInHashLiteral:
+  Enabled: false
+  StyleGuide: http://relaxed.ruby.style/#styletrailingcommainliteral
 
 Style/WhileUntilModifier:
   Enabled: false
   StyleGuide: http://relaxed.ruby.style/#stylewhileuntilmodifier
+
+Style/WordArray:
+  Enabled: false
+  StyleGuide: http://relaxed.ruby.style/#stylewordarray
 
 Lint/AmbiguousRegexpLiteral:
   Enabled: false
@@ -199,33 +277,6 @@ Lint/AssignmentInCondition:
   Enabled: false
   StyleGuide: http://relaxed.ruby.style/#lintassignmentincondition
 
-Lint/HandleExceptions:
-  Exclude:
-    - 'Rakefile'
-
-Metrics/AbcSize:
+Style/NestedParenthesizedCalls:
   Enabled: false
 
-Metrics/BlockNesting:
-  Enabled: false
-
-Metrics/ClassLength:
-  Enabled: false
-
-Metrics/ModuleLength:
-  Enabled: false
-
-Metrics/CyclomaticComplexity:
-  Enabled: false
-
-Metrics/LineLength:
-  Enabled: false
-
-Metrics/MethodLength:
-  Enabled: false
-
-Metrics/ParameterLists:
-  Enabled: false
-
-Metrics/PerceivedComplexity:
-  Enabled: false
