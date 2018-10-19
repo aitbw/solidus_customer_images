@@ -39,4 +39,20 @@ RSpec.describe Spree::CustomerImage, type: :model do
       expect(described_class.pending).to eq [found]
     end
   end
+
+  describe 'approval methods' do
+    subject { create :customer_image }
+
+    describe '#approve' do
+      it 'sets approved to true' do
+        expect { subject.approve }.to change(subject, :approved).to true
+      end
+    end
+
+    describe '#reject' do
+      it 'sets approved to false' do
+        expect { subject.reject }.to change(subject, :approved).to false
+      end
+    end
+  end
 end
