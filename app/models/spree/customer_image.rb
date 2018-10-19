@@ -13,5 +13,13 @@ module Spree
 
     validates :variant, presence: true
     validates :image, presence: true
+
+    def approve
+      update approved: true
+    end
+
+    def reject
+      update approved: false
+    end
   end
 end
