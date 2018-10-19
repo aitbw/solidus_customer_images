@@ -1,0 +1,114 @@
+<% admin_breadcrumb(link_to plural_resource_name(Spree::Product), spree.admin_products_path) %>
+
+<% content_for :page_title do %>
+  <%= Spree.t('customer_images') %>
+<% end %>
+
+<% content_for :table_filter_title do %>
+  <%= Spree.t('search') %>
+<% end %>
+
+<% content_for :table_filter do %>
+  <%= form_for url_for, method: :get do %>
+    <div class="fourteen columns">
+      <%= label_tag nil, Spree.t('search_by_sku') %>
+      <%= text_field_tag :sku %>
+      <%= button Spree.t(:search), 'icon-search' %>
+    </div>
+  <% end %>
+
+  <div data-hook="admin_customer_images_index_search">
+    <%= search_form_for [:admin, @search] do |f| %>
+      <div class="two columns omega">
+        <div class="field">
+          <%= f.label :approved_eq, Spree.t(:approval_status)-%><br/>
+          <%= f.select :approved_eq, [
+              [Spree.t(:all), nil],
+              [Spree.t(:approved_customer_images), true],
+              [Spree.t(:rejected_customer_images), false]
+            ], {}, class: 'select2 fullwidth'  -%>
+        </div>
+      </div>
+
+      <div class="clear"></div>
+
+      <div class="form-buttons actions filter-actions" data-hook="admin_customer_images_index_search_buttons">
+        <%= button Spree.t(:search) %>
+      </div>
+    <%- end -%>
+  </div>
+<%- end -%>
+
+
+<%= paginate @customer_images, theme: "solidus_admin" %>
+
+<% if @customer_images.any? %>
+  <table class="index">
+    <colgroup>
+      <col style="width: 20%;">
+      <col style="width: 15%;">
+      <col style="width: 25%;">
+      <col style="width: 15%;">
+      <col style="width: 8%;">
+      <col style="width: 17%;">
+    </colgroup>
+    <thead>
+      <tr>
+        <th><%= Spree::CustomerImage.human_attribute_name(:product) %></th>
+        <th class="align-center"><%= Spree::CustomerImage.human_attribute_name(:image) %></th>
+        <th><%= Spree::CustomerImage.human_attribute_name(:user) %></th>
+        <th><%= Spree::CustomerImage.human_attribute_name(:created_at) %></th>
+        <th><%= Spree::CustomerImage.human_attribute_name(:approved) %></th>
+        <th class="actions"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <%- @customer_images.each do |customer_image| -%>
+        <tr id="<%= dom_id customer_image %>">
+          <td>
+            <%= link_to customer_image.product.name, admin_product_path(customer_image.product) %>
+          </td>
+
+          <td class="align-center">
+            <% image = customer_image.image %>
+            <span class="modal-image-trigger" data-toggle="modal" data-target="#modal-image-<%= image.id %>">
+              <%= render 'spree/admin/shared/image', image: image, size: :mini %>
+            </span>
+            <%= render(
+              "spree/admin/shared/modal",
+              target: "modal-image-#{image.id}",
+              title: customer_image.image.alt,
+              content: %{
+                <div class='align-center'>
+                  #{image_tag(image.attachment.url(:large))}
+                </div>
+              }.html_safe
+            ) %>
+          </td>
+
+          <td>
+            <%= link_to customer_image.user.try(:email), [:admin, customer_image.user] %></p>
+          </td>
+          <td>
+            <%= l customer_image.created_at, format: :short %>
+          </td>
+          <td class="align-center">
+            <%= customer_image_icon(customer_image) %>
+          </td>
+          <td class="actions">
+            <%= link_to_with_icon 'ok', Spree.t(:approve), approve_admin_customer_image_path(customer_image), method: :patch, no_text: true, class: 'approve', data: { action: 'edit' } if customer_image.approved.nil? %>
+            <%= link_to_with_icon 'ban', Spree.t(:reject), reject_admin_customer_image_path(customer_image), method: :patch, no_text: true, class: 'reject', data: { action: 'remove'} if customer_image.approved.nil? %>
+            <%= link_to_edit customer_image, no_text: true, class: 'edit' %>
+            <%= link_to_delete customer_image, no_text: true %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <div class="no-objects-found">
+    <%= Spree.t(:no_results) %>
+  </div>
+<% end %>
+
+<%= paginate @customer_images, theme: "solidus_admin" -%>

@@ -1,0 +1,9 @@
+table {
+  th, td {
+    &.actions {
+      .fa-ban:hover {
+        color: var(--danger);
+      }
+    }
+  }
+}

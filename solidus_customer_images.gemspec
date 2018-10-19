@@ -34,4 +34,5 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'ffaker'
   s.add_development_dependency 'factory_bot'
   s.add_development_dependency 'rspec-collection_matchers'
+  s.add_development_dependency 'rails-controller-testing'
 end
