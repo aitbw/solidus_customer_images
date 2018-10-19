@@ -13,6 +13,11 @@ RSpec.describe Spree::CustomerImage, type: :model do
     expect(build :customer_image, image: nil).to have_at_least(1).error_on :image
   end
 
+  it 'has product association via variant' do
+    subject = create :customer_image
+    expect(subject.product).to eql subject.variant.product
+  end
+
   describe '::approved' do
     before { create :customer_image, approved: false }
 
