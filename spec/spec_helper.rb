@@ -37,7 +37,15 @@ require 'spree/testing_support/url_helpers'
 # Requires factories defined in lib/solidus_customer_images/factories.rb
 require 'solidus_customer_images/factories'
 
+require 'spree/testing_support/controller_requests'
+require 'rails-controller-testing'
+
+Capybara.server = :webrick
+Capybara.default_driver = :rack_test
+
 RSpec.configure do |config|
+  config.include Spree::TestingSupport::ControllerRequests, type: :controller
+  config.include ::Rails::Controller::Testing::TestProcess, type: :controller
   config.include FactoryBot::Syntax::Methods
 
   # Infer an example group's spec type from the file location.

@@ -2,6 +2,10 @@
 
 module Spree
   class CustomerImage < Spree::Base
+    def self.ransackable_attributes(auth_object = nil)
+      super + column_names
+    end
+
     belongs_to :variant, class_name: 'Spree::Variant', inverse_of: :customer_images, foreign_key: :variant_id, touch: true
     belongs_to :user, class_name: Spree.user_class.name, inverse_of: :customer_images, foreign_key: :user_id, touch: true
     has_one :image, class_name: 'Spree::Image', as: :viewable, dependent: :destroy

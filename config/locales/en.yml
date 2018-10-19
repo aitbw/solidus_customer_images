@@ -1,5 +1,28 @@
-# Sample localization file for English. Add more files in this directory for other locales.
-# See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
-
 en:
-  hello: Hello world
+  activerecord:
+    attributes:
+      spree/customer_image:
+        image: Image
+        created_at: Date
+        user: User
+        approved: Approved
+        variant: Variant
+    models:
+      spree/customer_image:
+        one: one customer image
+        other: "%{count} customer images"
+
+  spree:
+    customer_images: Customer images
+    approval_status: Approval status
+    approve: Approve
+    reject: Reject
+    pending: Pending
+    approved: Approved
+    rejected: Rejected
+    info_approve_customer_image: Customer image was successfully approved
+    info_reject_customer_image: Customer image was successfully rejected
+    search_by_sku: Search by SKU
+    admin:
+      tab:
+        customer_images_management: Customer images
