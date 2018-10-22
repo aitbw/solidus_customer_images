@@ -26,7 +26,8 @@ group :development, :test do
     gem 'factory_bot', '> 4.10.0'
   end
   gem 'selenium-webdriver'
-  gem 'geckodriver-helper'
+  gem 'chromedriver-helper'
+  gem 'puma'
 end
 
 gemspec

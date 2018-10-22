@@ -40,8 +40,7 @@ require 'solidus_customer_images/factories'
 require 'spree/testing_support/controller_requests'
 require 'rails-controller-testing'
 
-Capybara.server = :webrick
-Capybara.default_driver = :rack_test
+Capybara.javascript_driver = :selenium_chrome
 
 RSpec.configure do |config|
   config.include Spree::TestingSupport::ControllerRequests, type: :controller
