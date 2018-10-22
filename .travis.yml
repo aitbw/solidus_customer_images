@@ -1,9 +1,14 @@
 language: ruby
 rvm:
   - 2.5.1
-sudo: false
+sudo: required
 cache: bundler
-only: master
+addons:
+  chrome: stable
+before_script:
+  - export DISPLAY=:99.0
+  - sh -e /etc/init.d/xvfb start
+  - sleep 3 # give xvfb some time to start
 env:
   matrix:
     - SOLIDUS_BRANCH=master DB=mysql
