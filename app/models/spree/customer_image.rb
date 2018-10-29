@@ -17,12 +17,20 @@ module Spree
     validates :product, presence: true
     validates :image, presence: true
 
+    after_initialize :auto_assign_email
+
     def approve
       update approved: true
     end
 
     def reject
       update approved: false
+    end
+
+    private
+
+    def auto_assign_email
+      user && self.email ||= user.email
     end
   end
 end

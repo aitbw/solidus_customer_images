@@ -13,6 +13,37 @@ RSpec.describe Spree::CustomerImage, type: :model do
     expect(build :customer_image, image: nil).to have_at_least(1).error_on :image
   end
 
+  context 'when initializing a record' do
+    let(:user) { Spree.user_class.new(email: 'foo@bar.com') }
+    let(:email) { 'test@example.com' }
+
+    context 'when the record has no email' do
+      context 'when the record has no user too' do
+        it { expect(subject.email).to be_nil }
+      end
+
+      context 'when the record has user' do
+        subject { described_class.new user: user }
+
+        it { expect(subject.email).to eql user.email }
+      end
+    end
+
+    context 'when the record has email' do
+      context 'when the email is different from the one of the user' do
+        subject { described_class.new email: email, user: user }
+
+        it { expect(subject.email).to eql email }
+      end
+
+      context 'whe  the email is same as the one of the user' do
+        subject { described_class.new email: user.email, user: user }
+
+        it { expect(subject.email).to eql user.email }
+      end
+    end
+  end
+
   describe '::approved' do
     before { create :customer_image, approved: false }
 
