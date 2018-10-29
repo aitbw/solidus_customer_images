@@ -1,0 +1,16 @@
+<% content_for :page_title do %>
+  <%= Spree.t(:editing_customer_image, link: link_to(@customer_image.product.name, product_path(@customer_image.product))) %>
+<% end %>
+
+<% render 'spree/admin/shared/product_sub_menu' %>
+
+<%= form_for([:admin, @customer_image]) do |f| %>
+  <div class="alpha eight columns">
+    <%= render 'form', f: f %>
+  </div>
+  <div class="clear"></div>
+
+  <fieldset class="no-border-top">
+    <%= render 'spree/admin/shared/edit_resource_links' %>
+  </fieldset>
+<% end %>

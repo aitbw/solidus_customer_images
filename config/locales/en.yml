@@ -9,8 +9,8 @@ en:
         product: Product
     models:
       spree/customer_image:
-        one: one customer image
-        other: "%{count} customer images"
+        one: Customer image
+        other: Customer images
 
   spree:
     customer_images: Customer images
@@ -22,6 +22,7 @@ en:
     rejected: Rejected
     info_approve_customer_image: Customer image was successfully approved
     info_reject_customer_image: Customer image was successfully rejected
+    editing_customer_image: Editing customer image
     search_by_sku: Search by SKU
     admin:
       tab:
