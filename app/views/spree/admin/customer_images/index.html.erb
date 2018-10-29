@@ -45,18 +45,22 @@
 <% if @customer_images.any? %>
   <table class="index">
     <colgroup>
+      <col style="width: 15%;">
+      <col style="width: 7%;">
+      <col style="width: 15%;">
+      <col style="width: 15%;">
       <col style="width: 20%;">
+      <col style="width: 10%;">
+      <col style="width: 3%;">
       <col style="width: 15%;">
-      <col style="width: 25%;">
-      <col style="width: 15%;">
-      <col style="width: 8%;">
-      <col style="width: 17%;">
     </colgroup>
     <thead>
       <tr>
         <th><%= Spree::CustomerImage.human_attribute_name(:product) %></th>
         <th class="align-center"><%= Spree::CustomerImage.human_attribute_name(:image) %></th>
-        <th><%= Spree::CustomerImage.human_attribute_name(:user) %></th>
+        <th><%= Spree::CustomerImage.human_attribute_name(:user_name) %></th>
+        <th><%= Spree::CustomerImage.human_attribute_name(:email) %></th>
+        <th><%= Spree::CustomerImage.human_attribute_name(:description) %></th>
         <th><%= Spree::CustomerImage.human_attribute_name(:created_at) %></th>
         <th><%= Spree::CustomerImage.human_attribute_name(:approved) %></th>
         <th class="actions"></th>
@@ -85,9 +89,18 @@
               }.html_safe
             ) %>
           </td>
-
           <td>
-            <%= link_to customer_image.user.try(:email), [:admin, customer_image.user] %></p>
+            <%= customer_image.user_name %>
+          </td>
+          <td>
+            <% if customer_image.user %>
+              <%= link_to customer_image.user.try(:email), [:admin, customer_image.user] %></p>
+            <% else %>
+              <%= mail_to customer_image.email %>
+            <% end %>
+          </td>
+          <td>
+            <%= truncate customer_image.description %>
           </td>
           <td>
             <%= l customer_image.created_at, format: :short %>
