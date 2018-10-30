@@ -28,6 +28,7 @@ group :development, :test do
   gem 'selenium-webdriver'
   gem 'chromedriver-helper'
   gem 'puma'
+  gem 'pry'
 end
 
 gemspec
