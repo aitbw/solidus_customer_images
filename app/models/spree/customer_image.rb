@@ -14,10 +14,14 @@ module Spree
     scope :rejected, -> { where approved: false }
     scope :pending, -> { where approved: nil }
 
+    accepts_nested_attributes_for :image
+
     validates :product, presence: true
     validates :image, presence: true
+    validates :email, presence: true
 
     after_initialize :auto_assign_email
+    after_initialize :auto_build_image
 
     def approve
       update approved: true
@@ -31,6 +35,10 @@ module Spree
 
     def auto_assign_email
       user && self.email ||= user.email
+    end
+
+    def auto_build_image
+      image || build_image
     end
   end
 end

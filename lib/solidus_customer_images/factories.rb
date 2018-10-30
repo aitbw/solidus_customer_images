@@ -5,5 +5,6 @@ FactoryBot.define do
     association :image
     association :user
     association :product
+    email 'email@example.com'
   end
 end
