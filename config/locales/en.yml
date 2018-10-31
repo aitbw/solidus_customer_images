@@ -20,9 +20,13 @@ en:
     pending: Pending
     approved: Approved
     rejected: Rejected
+    submit_customer_image: Submit picture
+    add_customer_image_for: Add customer image for %{name}
+    customer_image_successfully_submitted: Customer image was successfully submitted
     info_approve_customer_image: Customer image was successfully approved
     info_reject_customer_image: Customer image was successfully rejected
     editing_customer_image: Editing customer image
+    moderation_message: Your picture will be reviewed before publication.
     search_by_sku: Search by SKU
     admin:
       tab:

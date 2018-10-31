@@ -13,13 +13,13 @@ module Spree
 
       def approve
         @customer_image.approve
-        flash[:success] = Spree.t(:info_approve_customer_image)
+        flash[:success] = I18n.t('spree.info_approve_customer_image')
         redirect_to admin_customer_images_path
       end
 
       def reject
         @customer_image.reject
-        flash[:success] = Spree.t(:info_reject_customer_image)
+        flash[:success] = I18n.t('spree.info_reject_customer_image')
         redirect_to admin_customer_images_path
       end
     end

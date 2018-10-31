@@ -9,8 +9,12 @@ RSpec.describe Spree::CustomerImage, type: :model do
     expect(build :customer_image, product: nil).to have_at_least(1).error_on :product
   end
 
-  it 'requires image' do
-    expect(build :customer_image, image: nil).to have_at_least(1).error_on :image
+  it 'requires email' do
+    expect(build :customer_image, email: nil).to have_at_least(1).error_on :email
+  end
+
+  it 'automatically builds image when missing' do
+    expect(described_class.new.image).to be_present
   end
 
   context 'when initializing a record' do

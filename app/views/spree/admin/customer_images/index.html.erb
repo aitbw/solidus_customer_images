@@ -1,19 +1,19 @@
 <% admin_breadcrumb(link_to plural_resource_name(Spree::Product), spree.admin_products_path) %>
 
 <% content_for :page_title do %>
-  <%= Spree.t('customer_images') %>
+  <%= t('spree.customer_images') %>
 <% end %>
 
 <% content_for :table_filter_title do %>
-  <%= Spree.t('search') %>
+  <%= t('spree.search') %>
 <% end %>
 
 <% content_for :table_filter do %>
   <%= form_for url_for, method: :get do %>
     <div class="fourteen columns">
-      <%= label_tag nil, Spree.t('search_by_sku') %>
+      <%= label_tag nil, t('spree.search_by_sku') %>
       <%= text_field_tag :sku %>
-      <%= button Spree.t(:search), 'icon-search' %>
+      <%= button t('spree.search'), 'icon-search' %>
     </div>
   <% end %>
 
@@ -21,11 +21,11 @@
     <%= search_form_for [:admin, @search] do |f| %>
       <div class="two columns omega">
         <div class="field">
-          <%= f.label :approved_eq, Spree.t(:approval_status)-%><br/>
+          <%= f.label :approved_eq, t('spree.approval_status')-%><br/>
           <%= f.select :approved_eq, [
-              [Spree.t(:all), nil],
-              [Spree.t(:approved_customer_images), true],
-              [Spree.t(:rejected_customer_images), false]
+              [t('spree.all'), nil],
+              [t('spree.approved_customer_images'), true],
+              [t('spree.rejected_customer_images'), false]
             ], {}, class: 'select2 fullwidth'  -%>
         </div>
       </div>
@@ -33,7 +33,7 @@
       <div class="clear"></div>
 
       <div class="form-buttons actions filter-actions" data-hook="admin_customer_images_index_search_buttons">
-        <%= button Spree.t(:search) %>
+        <%= button t('spree.search') %>
       </div>
     <%- end -%>
   </div>
@@ -109,8 +109,8 @@
             <%= customer_image_icon(customer_image) %>
           </td>
           <td class="actions">
-            <%= link_to_with_icon 'ok', Spree.t(:approve), approve_admin_customer_image_path(customer_image), method: :patch, no_text: true, class: 'approve', data: { action: 'edit' } if customer_image.approved.nil? %>
-            <%= link_to_with_icon 'ban', Spree.t(:reject), reject_admin_customer_image_path(customer_image), method: :patch, no_text: true, class: 'reject', data: { action: 'remove'} if customer_image.approved.nil? %>
+            <%= link_to_with_icon 'ok', t('spree.approve'), approve_admin_customer_image_path(customer_image), method: :patch, no_text: true, class: 'approve', data: { action: 'edit' } if customer_image.approved.nil? %>
+            <%= link_to_with_icon 'ban', t('spree.reject'), reject_admin_customer_image_path(customer_image), method: :patch, no_text: true, class: 'reject', data: { action: 'remove'} if customer_image.approved.nil? %>
             <%= link_to_edit customer_image, no_text: true, class: 'edit' %>
             <%= link_to_delete customer_image, no_text: true %>
           </td>
@@ -120,7 +120,7 @@
   </table>
 <% else %>
   <div class="no-objects-found">
-    <%= Spree.t(:no_results) %>
+    <%= t('spree.no_results') %>
   </div>
 <% end %>
 

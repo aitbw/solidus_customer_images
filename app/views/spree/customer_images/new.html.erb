@@ -1,0 +1,33 @@
+<%= content_tag :h2, t('spree.add_customer_image_for', name: @product.name), class: 'new-customer-image__title' %>
+
+<p><%= t 'spree.moderation_message' %></p>
+
+<%= form_for @customer_image, url: product_customer_images_path(@product) do |f| %>
+  <%= render "spree/shared/error_messages", target: @customer_image %>
+
+  <p class="new-customer-image__attachment-field">
+    <%= f.fields_for :image, @customer_image.image do |image| %>
+      <%= image.label :attachment %> <span class="required">*</span><br />
+      <%= image.file_field :attachment %>
+    <% end %>
+  </p>
+
+  <p class="new-customer-image__email-field">
+    <%= f.label :email %> <span class="required">*</span><br />
+    <%= f.text_field :email, maxlength: 255, size: 50 %>
+  </p>
+
+  <p class="new-customer-image__user-name-field">
+    <%= f.label :user_name %> <span class="required">*</span><br />
+    <%= f.text_field :user_name, maxlength: 255, size: 50  %>
+  </p>
+
+  <p class="new-customer-image__description-field">
+    <%= f.label :description %><br />
+    <%= f.text_area :description, rows: 5, cols: 50  %>
+  </p>
+
+  <p class="new-customer-image__submit">
+    <%= f.submit t('spree.submit_customer_image'), class: "button bg_darkfirst" %>
+  </p>
+<% end %>
