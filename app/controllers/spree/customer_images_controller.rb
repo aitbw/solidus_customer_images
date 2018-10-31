@@ -11,7 +11,7 @@ module Spree
     def create
       @customer_image = Spree::CustomerImage.new(review_params)
       if @customer_image.save
-        flash[:success] = Spree.t('customer_image_successfully_submitted')
+        flash[:success] = I18n.t('spree.customer_image_successfully_submitted')
         redirect_to spree.product_path(@product)
       else
         render :new

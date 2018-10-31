@@ -52,7 +52,7 @@ module Spree
 
       it 'flashes the notice' do
         post :create, params: customer_image_params
-        expect(flash[:success]).to eq Spree.t(:customer_image_successfully_submitted)
+        expect(flash[:success]).to eq I18n.t('spree.customer_image_successfully_submitted')
       end
 
       it 'redirects to product page' do
