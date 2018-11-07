@@ -29,7 +29,7 @@ module Spree
 
           it 'shows a message when approved' do
             expect(response).to redirect_to spree.admin_customer_images_path
-            expect(flash[:success]).to eq I18n.t('spree.info_approve_customer_image')
+            expect(flash[:success]).to eq I18n.t('spree.customer_images.info_approve')
           end
         end
 
@@ -38,7 +38,7 @@ module Spree
 
           it 'shows a message when rejected' do
             expect(response).to redirect_to spree.admin_customer_images_path
-            expect(flash[:success]).to eq I18n.t('spree.info_reject_customer_image')
+            expect(flash[:success]).to eq I18n.t('spree.customer_images.info_reject')
           end
         end
       end
