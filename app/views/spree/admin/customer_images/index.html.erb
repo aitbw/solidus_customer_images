@@ -1,7 +1,7 @@
 <% admin_breadcrumb(link_to plural_resource_name(Spree::Product), spree.admin_products_path) %>
 
 <% content_for :page_title do %>
-  <%= t('spree.customer_images') %>
+  <%= t('spree.customer_images.customer_images') %>
 <% end %>
 
 <% content_for :table_filter_title do %>
@@ -11,7 +11,7 @@
 <% content_for :table_filter do %>
   <%= form_for url_for, method: :get do %>
     <div class="fourteen columns">
-      <%= label_tag nil, t('spree.search_by_sku') %>
+      <%= label_tag nil, t('spree.customer_images.search_by_sku') %>
       <%= text_field_tag :sku %>
       <%= button t('spree.search'), 'icon-search' %>
     </div>
@@ -24,8 +24,8 @@
           <%= f.label :approved_eq, t('spree.approval_status')-%><br/>
           <%= f.select :approved_eq, [
               [t('spree.all'), nil],
-              [t('spree.approved_customer_images'), true],
-              [t('spree.rejected_customer_images'), false]
+              [t('spree.customer_images.approved'), true],
+              [t('spree.customer_images.rejected'), false]
             ], {}, class: 'select2 fullwidth'  -%>
         </div>
       </div>

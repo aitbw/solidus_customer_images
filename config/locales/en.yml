@@ -13,21 +13,23 @@ en:
         other: Customer images
 
   spree:
-    customer_images: Customer images
-    approval_status: Approval status
-    approve: Approve
-    reject: Reject
-    pending: Pending
-    approved: Approved
-    rejected: Rejected
-    submit_customer_image: Submit picture
-    add_customer_image_for: Add customer image for %{name}
-    customer_image_successfully_submitted: Customer image was successfully submitted
-    info_approve_customer_image: Customer image was successfully approved
-    info_reject_customer_image: Customer image was successfully rejected
-    editing_customer_image: Editing customer image
-    moderation_message: Your picture will be reviewed before publication.
-    search_by_sku: Search by SKU
+    customer_images:
+      customer_images: Customer images
+      approval_status: Approval status
+      approve: Approve
+      reject: Reject
+      pending: Pending
+      approved: Approved
+      rejected: Rejected
+      submit: Submit picture
+      add_for: Add customer image for %{name}
+      successfully_submitted: Customer image was successfully submitted
+      info_approve: Customer image was successfully approved
+      info_reject: Customer image was successfully rejected
+      editing: Editing customer image
+      moderation_message: Your picture will be reviewed before publication.
+      search_by_sku: Search by SKU
     admin:
       tab:
-        customer_images_management: Customer images
+        customer_images:
+          management: Customer images
