@@ -5,6 +5,7 @@ module Spree
     before_action :load_product
 
     def new
+      @title = I18n.t('spree.customer_images.new_image_page_title', name: @product.name)
       @customer_image = Spree::CustomerImage.new(base_review_params)
     end
 
