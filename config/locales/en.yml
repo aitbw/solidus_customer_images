@@ -29,6 +29,7 @@ en:
       editing: Editing customer image
       moderation_message: Your picture will be reviewed before publication.
       search_by_sku: Search by SKU
+      new_image_page_title: "%{name} | Submit Your Picture"
     admin:
       tab:
         customer_images:

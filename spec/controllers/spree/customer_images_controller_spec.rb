@@ -33,6 +33,11 @@ module Spree
         expect(response.status).to eq(200)
         expect(response).to render_template(:new)
       end
+
+      it 'has expected title' do
+        get :new, params: { product_id: product.slug }
+        expect(assigns[:title]).to eql "#{product.name} | Submit Your Picture"
+      end
     end
 
     describe '#create' do
