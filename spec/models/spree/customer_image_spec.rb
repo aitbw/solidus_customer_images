@@ -17,6 +17,11 @@ RSpec.describe Spree::CustomerImage, type: :model do
     expect(described_class.new.image).to be_present
   end
 
+  it 'builds associated image of the expected class' do
+    klass = SolidusCustomerImages::Config.image_class_name.constantize
+    expect(described_class.new.image.class).to be klass
+  end
+
   context 'when initializing a record' do
     let(:user) { Spree.user_class.new(email: 'foo@bar.com') }
     let(:email) { 'test@example.com' }
