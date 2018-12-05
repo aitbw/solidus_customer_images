@@ -1,10 +1,10 @@
-# SolidusCustomerImages
+# SolidusCustomerImages
 
 [![Build Status](https://travis-ci.org/nebulab/solidus_customer_images.svg?branch=master)](https://travis-ci.org/nebulab/solidus_customer_images)
 
 Solidus extension that allows customers to upload their images, with admin moderation
 
-## Installation
+## Installation
 
 Add solidus_customer_images to your Gemfile:
 
@@ -19,7 +19,7 @@ bundle
 bundle exec rails g solidus_customer_images:install
 ```
 
-## Setup frontend views
+## Setup frontend views
 
 For a quick implementation you may prefer to use the included `Deface` overrides by customizing directives in [add_form_link_to_product_page.rb](https://github.com/nebulab/solidus_customer_images/blob/master/app/overrides/add_form_link_to_product_page.rb) setting `disabled: false`.
 
