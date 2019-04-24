@@ -6,9 +6,11 @@ module Spree
       super + column_names
     end
 
+    # rubocop:disable Rails/ReflectionClassName
     belongs_to :product, class_name: 'Spree::Product', inverse_of: :customer_images, foreign_key: :spree_product_id, touch: true
     belongs_to :user, class_name: Spree.user_class.name, inverse_of: :customer_images, foreign_key: :spree_user_id, touch: true
     has_one :image, class_name: SolidusCustomerImages::Config.image_class_name, as: :viewable, dependent: :destroy
+    # rubocop:enable Rails/ReflectionClassName
 
     scope :approved, -> { where approved: true }
     scope :rejected, -> { where approved: false }
